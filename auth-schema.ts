@@ -1,5 +1,11 @@
 import { relations } from "drizzle-orm";
-import { pgTable, text, timestamp, boolean, index } from "drizzle-orm/pg-core";
+import { pgTable, text, timestamp, boolean, index, uuid, varchar } from "drizzle-orm/pg-core";
+
+export const messageTable = pgTable("message", {
+  messageId: uuid("message_id").defaultRandom().primaryKey(),
+  messageContent: varchar("message_content", { length: 300 }).notNull(),
+  messagerId: text("messager_id").references(() => user.id).notNull(),
+});
 
 export const user = pgTable("user", {
   id: text("id").primaryKey(),
@@ -76,6 +82,7 @@ export const verification = pgTable(
 export const userRelations = relations(user, ({ many }) => ({
   sessions: many(session),
   accounts: many(account),
+  messages: many(messageTable)
 }));
 
 export const sessionRelations = relations(session, ({ one }) => ({
