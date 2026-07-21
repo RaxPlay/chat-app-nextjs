@@ -7,20 +7,31 @@ export default function SignInPage() {
     <>
       <AuthNavbar />
 
-      <div>
-        <form action={signInAction}>
-          <input type="text" placeholder="Email" name="email" required />
+      <div className="flex justify-center">
+        <form action={signInAction} id="container" className="mt-20">
+          <h1 className="text-2xl">Sign-Up</h1>
+          <input
+            type="text"
+            placeholder="Email"
+            name="email"
+            required
+            className="mt-3"
+          />
           <input
             type="password"
             placeholder="Password"
             name="password"
             required
+            className="mt-3"
           />
+          <button type="submit" className="mt-4">
+            Sign In with Email
+          </button>
 
-          <button type="submit">Sign In</button>
+          <p className="my-4">Or</p>
+
+          <SocialSignInButton />
         </form>
-        or
-        <SocialSignInButton />
       </div>
     </>
   );

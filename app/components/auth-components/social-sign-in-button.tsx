@@ -11,9 +11,13 @@ export default function SocialSignInButton() {
     });
 
   return (
-    <button onClick={signInWithGitHub} className="flex items-center gap-2 border py-2 px-4 rounded-md">
-      <FaGithub />
-      Sign In with GitHub
-    </button>
+    <div className="flex justify-center">
+      <button
+        onClick={signInWithGitHub}
+      >
+        <FaGithub />
+        Sign In with GitHub
+      </button>
+    </div>
   );
 }

@@ -13,5 +13,9 @@ export default function SocialSignOutButton() {
       },
     });
 
-  return <button onClick={signOut}>Sign-Out</button>;
+  return (
+    <div className="flex justify-center">
+      <button onClick={signOut}>Sign-Out</button>;
+    </div>
+  );
 }

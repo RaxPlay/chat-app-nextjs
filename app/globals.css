@@ -2,15 +2,58 @@
 
 :root {
   --background: linear-gradient(to bottom right, #000814, #001d3d);
-  --container: linear-gradient(to bottom, #003049, #003566);
+  --container: linear-gradient(to bottom, #003566, #032340);
+  --button-bg: #001d3d;
+  --border: #3169a5;
   --text: #e2dfdf;
 }
 
-body{
+body {
   background: var(--background);
   color: var(--text);
 }
 
-nav{
-  background: var(--container);
+nav {
+  background: linear-gradient(to bottom, #003049, #003566);
+  border: 1px solid var(--border);
 }
+
+input{
+  width: 70%;
+  border: 1px solid var(--border);
+  background-color: var(--button-bg);
+  border-radius: 6px;
+  padding: 6px 8px;
+}
+
+input:focus{
+  outline: none;
+}
+
+button {
+  background-color: var(--button-bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 8px 16px;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+}
+
+#container {
+  background: var(--container);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 0px 30px;
+}
+
