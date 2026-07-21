@@ -1,11 +1,9 @@
-import AuthNavbar from "./components/auth-components/auth-navbar"
+import SignInPage from "./sign-in/page"
 
 export default function page() {
   return (
     <div>
-      <AuthNavbar/>
-
-      Hello World
+      <SignInPage></SignInPage>
     </div>
   )
 }

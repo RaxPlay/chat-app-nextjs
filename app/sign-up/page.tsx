@@ -1,8 +1,14 @@
 import AuthNavbar from "../components/auth-components/auth-navbar";
 import { signUpAction } from "../api/auth";
 import SocialSignInButton from "../components/auth-components/social-sign-in-button";
+import { getSession } from "@/lib/auth";
+import { redirect } from "next/navigation";
 
-export default function SignUpPage() {
+export default async function SignUpPage() {
+  const session = await getSession();
+
+  if (session) redirect("/home");
+  
   return (
     <>
       <AuthNavbar />
