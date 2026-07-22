@@ -5,6 +5,8 @@ export const messageTable = pgTable("message", {
   messageId: uuid("message_id").defaultRandom().primaryKey(),
   messageContent: varchar("message_content", { length: 300 }).notNull(),
   messagerId: text("messager_id").references(() => user.id).notNull(),
+  messagerName: text("messager_name").references(() => user.name).notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
 export const user = pgTable("user", {
@@ -98,3 +100,10 @@ export const accountRelations = relations(account, ({ one }) => ({
     references: [user.id],
   }),
 }));
+
+export const messageRelations = relations(messageTable, ({ one }) => ({
+  user: one(user, {
+    fields: [messageTable.messagerId, messageTable.messagerName],
+    references: [user.id, user.name],
+  })
+}))
