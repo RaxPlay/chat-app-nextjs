@@ -15,7 +15,7 @@ export default async function SignInPage() {
 
       <div className="flex justify-center">
         <form action={signInAction} id="container" className="mt-20">
-          <h1 className="text-2xl">Sign-Up</h1>
+          <h1 className="text-2xl">Sign-In</h1>
           <input
             type="text"
             placeholder="Email"

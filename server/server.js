@@ -19,7 +19,5 @@ app.prepare().then(() => {
   httpServer.once('error', (err) => {
     console.error(err);
     process.exit(1);
-  }).listen(3000, () => {
-    console.log('Ready on http://localhost:3000');
-  });
+  }).listen(4000);
 });
