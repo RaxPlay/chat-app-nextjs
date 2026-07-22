@@ -4,6 +4,8 @@
   --background: linear-gradient(to bottom right, #000814, #001d3d);
   --container: linear-gradient(to bottom, #003566, #032340);
   --button-bg: #001d3d;
+  --danger-bg: #8f1111;
+  --danger-border: #a53131;
   --border: #3169a5;
   --text: #e2dfdf;
 }
@@ -19,7 +21,7 @@ nav {
 }
 
 input{
-  width: 70%;
+  width: 200px;
   border: 1px solid var(--border);
   background-color: var(--button-bg);
   border-radius: 6px;
@@ -40,6 +42,12 @@ button {
   justify-content: center;
   gap: 4px;
   padding: 8px 16px;
+  transition: 300ms;
+}
+
+button:hover{
+  background-color: #011429;
+  border-color: #4b99ec;
 }
 
 form{
@@ -57,3 +65,18 @@ form{
   padding: 10px 0px 30px;
 }
 
+#global-chat-form{
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+#global-chat-form button{
+  width: 50px;
+  height: 38px;
+}
+
+#sign-out-button {
+  height: 30px;
+  width: 100px;
+}
