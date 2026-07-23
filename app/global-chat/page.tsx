@@ -6,14 +6,13 @@ import DisplayMessages from "../components/page-components/global-chat-component
 import RegularNavbar from "../components/page-components/regular-navbar";
 
 export interface Messages {
-  messageId: string;
   messageContent: string;
   messagerId: string;
   messagerName: string;
 }
 
-export default function GlobalChat() {
-  const [displayGlobalMessages, setDisplayGlobalMessages] = useState<
+export default function GlobalChat({userName, userId}: { userName: string, userId: string}) {
+const [displayGlobalMessages, setDisplayGlobalMessages] = useState<
     Messages[]
   >([]);
   const [newGlobalMessage, setNewGlobalMessage] = useState<string>("");
@@ -31,8 +30,12 @@ export default function GlobalChat() {
           />
 
           <GlobalChatForm
-            newMessage={newGlobalMessage}
+            messageContent={newGlobalMessage}
             setNewMessage={setNewGlobalMessage}
+            setDisplayMessages={setDisplayGlobalMessages}
+            displayMessages={displayGlobalMessages}
+            messagerName={userName}
+            messagerId={userId}
           />
         </div>
       </div>

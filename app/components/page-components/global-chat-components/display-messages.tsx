@@ -2,6 +2,7 @@
 
 import React, { useEffect } from "react";
 import { Messages } from "@/app/global-chat/page";
+import { socket } from "@/lib/socketClient";
 import { getMessages } from "@/utils/utils";
 
 interface Props {
@@ -13,21 +14,31 @@ export default function DisplayMessages({
   displayMessages,
   setDisplayMessages,
 }: Props) {
-  //First fetch.
   useEffect(() => {
-    const firstFetch = async () => {
+    socket.on("global-message", (data) => {
+      setDisplayMessages((prev) => [...prev, data]);
+    })
+
+    return () => {
+      socket.off("global-message");
+    }
+  }, [displayMessages])
+
+  useEffect(()=>{
+    const fetchMessages = async() => {
       setDisplayMessages(await getMessages());
     }
-
-    firstFetch()
+    fetchMessages();
   }, [])
+
+  console.log(displayMessages)
 
   return (
     <>
       <div className="border border-[#3169a5] bg-[#001d3d] rounded-md w-[85%] h-fit py-5 mt-4">
-        {displayMessages.map((message) => (
-          <div key={message.messageId} className="px-3">
-            <span className="text-[#5aa7f9]">{message.messagerName} -</span>{" "}
+        {displayMessages.map((message, index) => (
+          <div key={index} className="px-3">
+            <span className="text-[#5aa7f9]">{`${message.messagerName} -`}</span>{" "}
             {message.messageContent}
           </div>
         ))}

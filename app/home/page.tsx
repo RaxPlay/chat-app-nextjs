@@ -7,9 +7,12 @@ export default async function Home() {
 
   if(!session) redirect("/");
 
+  const userName = session.user.name;
+  const userId = session.user.id;
+
   return (
     <>
-      <GlobalChat/>
+      <GlobalChat userName={userName} userId={userId}/>
     </>
   );
 }

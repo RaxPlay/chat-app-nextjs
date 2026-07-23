@@ -1,22 +1,29 @@
 "use client";
 
-import { addMessage } from "@/utils/utils";
 import React from "react";
+import { Messages } from "@/app/global-chat/page"
+import { socket } from "@/lib/socketClient";
+import { addMessage } from "@/utils/utils";
 
 interface Props {
-  newMessage: string;
+  messageContent: string;
   setNewMessage: React.Dispatch<React.SetStateAction<string>>;
+  displayMessages: Messages[]
+  setDisplayMessages: React.Dispatch<React.SetStateAction<Messages[]>>;
+  messagerName: string
+  messagerId: string
 }
 
-export default function GlobalChatForm({ newMessage, setNewMessage}: Props) {
-  const sendMessage =  async (event: React.FormEvent) => {
-    if(newMessage !== ''){
-      try {
-        event.preventDefault();
-      }
-      catch(err) {
-        console.error(err);
-      }
+export default function GlobalChatForm({ messageContent, setNewMessage, setDisplayMessages, displayMessages, messagerName, messagerId}: Props) {
+  const sendMessage = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if(messageContent.trim() !== ""){
+      const data = { messageContent, messagerName, messagerId };
+      setDisplayMessages([...displayMessages, { messageContent , messagerId, messagerName }])
+      socket.emit("global-message", data);
+      await addMessage({ messageContent, messagerName, messagerId })
+      setNewMessage("");
     }
   }
 
@@ -25,7 +32,7 @@ export default function GlobalChatForm({ newMessage, setNewMessage}: Props) {
       <input
         type="text"
         placeholder="Be nice!"
-        value={newMessage}
+        value={messageContent}
         onChange={(e) => {
           setNewMessage(e.target.value);
         }}
