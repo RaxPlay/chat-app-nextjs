@@ -9,9 +9,6 @@ export default function RegularNavbar() {
           <Link href="/global-chat" className="hover:underline">
             Global Chat
           </Link>
-          <Link href="/private-messages" className="hover:underline">
-            Messages
-          </Link>
         </div>
 
         <SocialSignOutButton/> 

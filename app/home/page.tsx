@@ -5,14 +5,14 @@ import { redirect } from "next/navigation";
 export default async function Home() {
   const session = await getSession();
 
-  if(!session) redirect("/");
+  if (!session) redirect("/");
 
   const userName = session.user.name;
   const userId = session.user.id;
 
   return (
     <>
-      <GlobalChat userName={userName} userId={userId}/>
+      <GlobalChat userName={userName} userId={userId} />
     </>
   );
 }

@@ -17,29 +17,32 @@ export default function DisplayMessages({
   useEffect(() => {
     socket.on("global-message", (data) => {
       setDisplayMessages((prev) => [...prev, data]);
-    })
+    });
 
     return () => {
       socket.off("global-message");
-    }
-  }, [displayMessages])
+    };
+  }, [displayMessages]);
 
-  useEffect(()=>{
-    const fetchMessages = async() => {
+  useEffect(() => {
+    const fetchMessages = async () => {
       setDisplayMessages(await getMessages());
-    }
+    };
     fetchMessages();
-  }, [])
-
-  console.log(displayMessages)
+  }, []);
 
   return (
     <>
       <div className="border border-[#3169a5] bg-[#001d3d] rounded-md w-[85%] h-fit py-5 mt-4">
         {displayMessages.map((message, index) => (
-          <div key={index} className="px-3">
-            <span className="text-[#5aa7f9]">{`${message.messagerName} -`}</span>{" "}
-            {message.messageContent}
+          <div
+            key={index}
+            className="flex items-center justify-between px-3 py-1"
+          >
+            <span>
+              <span className="text-[#5aa7f9]">{`${message.messagerName} - `}</span>
+              {message.messageContent}
+            </span>
           </div>
         ))}
       </div>

@@ -5,7 +5,7 @@
   --container: linear-gradient(to bottom, #003566, #032340);
   --button-bg: #001d3d;
   --danger-bg: #8f1111;
-  --danger-border: #a53131;
+  --danger-border: #b73a3a;
   --border: #3169a5;
   --text: #e2dfdf;
 }
@@ -62,7 +62,8 @@ form{
   background: var(--container);
   border: 1px solid var(--border);
   border-radius: 6px;
-  padding: 10px 0px 30px;
+  padding: 10px 20px 30px;
+  width: fit-content;
 }
 
 #global-chat-form{
@@ -79,4 +80,11 @@ form{
 #sign-out-button {
   height: 30px;
   width: 100px;
+  background-color: var(--danger-bg);
+  border: 1px solid var(--danger-border);
+}
+
+#sign-out-button:hover {
+  background-color: #6e0d0d;
+  border-color: #d34747;
 }
